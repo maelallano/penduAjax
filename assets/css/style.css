@@ -1,0 +1,129 @@
+body {
+	background: black;
+	color: white;
+}
+
+.hidden {
+	display: none;
+}
+
+.active {
+	position: absolute;
+	display: flex;
+}
+
+.mainMenu {
+	background: black;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	justify-content: center;
+	align-items: center;
+}
+
+.mainMenuWrapper {
+	height: 20vh;
+	width: 100vw;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.mainTitle {
+	font-weight: 900;
+	font-size: 30px;
+	text-align: center;
+}
+
+.startBtn {
+	width: 100px;
+	border-radius: 15px;
+	font-weight: 900px;
+	font-size: 30px;
+	outline: none;
+	box-shadow: 0 6px #999;
+}
+
+.startBtn:hover {
+	cursor: pointer;
+}
+
+.startBtn:active {
+	box-shadow: 0 5px #666;
+	transform: translateY(3px);
+}
+
+.gameWrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	width: 80vw;
+	height: 66vh;
+	margin: 17vh auto;
+}
+
+.lifeTextAndDrawDiv {
+	width: 80vw;
+	height: 73%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.lifeDrawDiv {
+	width: 300px;
+	height: 300px;
+	border: 1px solid white;
+	font-size: 40px;
+}
+
+.lifeDraw {
+	width: 136px;
+	height: 300px;
+	margin: auto;
+	color: rgba(255, 255, 255, .2);
+}
+
+.wordAndinput_div {
+	height: 17%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.wordToFindDiv {
+	width: 80vw;
+	height: 42px;
+	display: flex;
+	justify-content: center;
+}
+
+.wordToFindDivText {
+	width: 40px;
+	height: 40px;
+	background: red;
+	border: 1px solid white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 24px;
+	font-weight: 900;
+}
+
+.lifeText {
+	background: blue;
+	width: 400px;
+	height: 20px;
+	text-align: center;
+	font-weight: 900;
+	font-size: 20px;
+}
+
+.colored {
+	color: red;
+}

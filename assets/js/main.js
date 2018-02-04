@@ -12,6 +12,8 @@ var life3 = document.querySelector('.life3');
 var life2 = document.querySelector('.life2');
 var life1 = document.querySelector('.life1');
 var life0 = document.querySelector('.life0');
+var lifeText = document.querySelector('.lifeText');
+var lettersUsed = document.querySelector('.lettersUsed');
 
 startBtn.addEventListener("click", function() {
   var ourRequest = new XMLHttpRequest();
@@ -39,7 +41,10 @@ const startGame = (data) => {
 
   wordToFind = data[0].name.toLowerCase();
   var htmlString = '';
-  var life = 9;
+  var life = 10;
+  lifeText.textContent = life + ' mistakes and you die.'
+
+  console.log(wordToFind)
 
   for (var i = 0; i < wordToFind.length; i++) {
     htmlString += '<div class="wordToFindDivText"></div>';
@@ -50,7 +55,7 @@ const startGame = (data) => {
   var wordToFindDivText = document.querySelectorAll('.wordToFindDivText');
 
   window.addEventListener('keydown', function(e) {
-    if (e.keyCode === 13) {
+    if (e.keyCode === 13 && life) {
       if (answersInput.value) {
         checkIfTrue(answersInput.value);
       } else {
@@ -63,18 +68,35 @@ const startGame = (data) => {
 
   const checkIfTrue = (letter) => {
     var check = 0;
+    var checkVictory = 0;
 
     for (var i = 0; i < wordToFind.length; i++) {
       if (letter === wordToFind[i]) {
         wordToFindDivText[i].textContent = letter;
+        wordToFindDivText[i].classList.add('rightLetter')
         check = 1;
       }
     }
 
+    for (var i = 0; i < wordToFindDivText.length; i++) {
+      if (!wordToFindDivText[i].textContent) {
+        checkVictory = 1;
+      }
+    }
+
+    if (!checkVictory) {
+      lifeText.textContent = 'You\'re saved buddy !'
+      gameWon()
+    }
+
     if (!check) {
       life--;
+      lettersUsed.textContent += (letter + ' ')
+      lifeText.textContent = life === 1 ? life + ' mistake and you die.' : life + ' mistakes and you die.'
+      console.log(life)
       drawHangman();
       if (life < 1) {
+        lifeText.textContent = 'You\'re dead buddy.'
         gameOver();
       }
     }
@@ -82,43 +104,49 @@ const startGame = (data) => {
   }
 
   const drawHangman = () => {
-    if (life < 9) {
+    if (life < 10) {
       for (var i = 0; i < life9.length; i++) {
         life9[i].classList.add('colored')
       }
     }
-    if (life < 8) {
+    if (life < 9) {
       for (var i = 0; i < life8.length; i++) {
         life8[i].classList.add('colored')
       }
     }
-    if (life < 7) {
+    if (life < 8) {
       life7.classList.add('colored')
     }
-    if (life < 6) {
+    if (life < 7) {
       life6.classList.add('colored')
     }
-    if (life < 5) {
+    if (life < 6) {
       life5.classList.add('colored')
     }
-    if (life < 4) {
+    if (life < 5) {
       life4.classList.add('colored')
     }
-    if (life < 3) {
+    if (life < 4) {
       life3.classList.add('colored')
     }
-    if (life < 2) {
+    if (life < 3) {
       life2.classList.add('colored')
     }
-    if (life < 1) {
+    if (life < 2) {
       life1.classList.add('colored')
     }
-    if (life < 0) {
+    if (life < 1) {
       life0.classList.add('colored')
     }
   }
 
   const gameOver = () => {
+    setTimeout(function() {
+      window.location.reload()
+    }, 2000)
+  }
+
+  const gameWon = () => {
     setTimeout(function() {
       window.location.reload()
     }, 2000)

@@ -18,7 +18,7 @@ var lettersUsed = document.querySelector('.lettersUsed');
 startBtn.addEventListener("click", function() {
   var ourRequest = new XMLHttpRequest();
   // ourRequest.open('GET', 'http://www.filltext.com/?rows=1&pretty=true&name={firstName}');
-  ourRequest.open('GET', 'https://github.com/maelallano/penduAjax/blob/master/data.txt');
+  ourRequest.open('GET', 'https://github.com/maelallano/penduAjax/blob/master/data.json');
   ourRequest.onload = function() {
     if (ourRequest.status >= 200 && ourRequest.status < 400) {
       var ourData = JSON.parse(ourRequest.responseText);

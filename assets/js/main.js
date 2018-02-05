@@ -1,5 +1,6 @@
 var mainMenu = document.querySelector('.mainMenu');
 var startBtn = document.querySelector('.startBtn');
+var gameWrapper = document.querySelector('.gameWrapper');
 var wordToFindDiv = document.querySelector('.wordToFindDiv');
 var answersInput = document.querySelector('.answersInput');
 var life9 = document.querySelectorAll('.life9');
@@ -14,6 +15,9 @@ var life1 = document.querySelector('.life1');
 var life0 = document.querySelector('.life0');
 var lifeText = document.querySelector('.lifeText');
 var lettersUsed = document.querySelector('.lettersUsed');
+var answerWord = document.querySelector('.answerWord');
+var answerDesc = document.querySelector('.answerDesc');
+var answerDiv = document.querySelector('.answerDiv');
 
 startBtn.addEventListener("click", function() {
   var ourRequest = new XMLHttpRequest();
@@ -39,14 +43,17 @@ startBtn.addEventListener("click", function() {
 const startGame = (data) => {
   mainMenu.classList.add('hidden');
   mainMenu.classList.remove('active');
-  var randomNumber = Math.floor(Math.random() * Object.keys(data).length)
+  gameWrapper.classList.add('active');
+  gameWrapper.classList.remove('hidden');
+  var randomNumber = Math.floor(Math.random() * Object.keys(data).length);
 
-  wordToFind = Object.keys(data)[randomNumber].toLowerCase();
+  wordToFind = Object.keys(data)[randomNumber];
+  answerWord.innerHTML = wordToFind + ':&nbsp;';
+  answerDesc.innerHTML = '&nbsp;' + data[Object.keys(data)[randomNumber]];
+  wordToFind = wordToFind.toLowerCase();
   var htmlString = '';
   var life = 10;
   lifeText.textContent = life + ' mistakes and you die.'
-
-  console.log(wordToFind)
 
   for (var i = 0; i < wordToFind.length; i++) {
     htmlString += '<div class="wordToFindDivText"></div>';
@@ -61,7 +68,7 @@ const startGame = (data) => {
       if (answersInput.value) {
         checkIfTrue(answersInput.value);
       } else {
-        alert('Écris une lettre :o');
+        alert('Write a letter :o');
       }
     }
 
@@ -143,15 +150,17 @@ const startGame = (data) => {
   }
 
   const gameOver = () => {
+    answerDiv.style.opacity = 1;
     setTimeout(function() {
       window.location.reload()
-    }, 2000)
+    }, 6000)
   }
 
   const gameWon = () => {
+    answerDiv.style.opacity = 1;
     setTimeout(function() {
       window.location.reload()
-    }, 2000)
+    }, 6000)
   }
 
 };

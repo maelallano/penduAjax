@@ -18,7 +18,7 @@ var lettersUsed = document.querySelector('.lettersUsed');
 startBtn.addEventListener("click", function() {
   var ourRequest = new XMLHttpRequest();
   // ourRequest.open('GET', 'http://www.filltext.com/?rows=1&pretty=true&name={firstName}');
-  ourRequest.open('GET', 'https://github.com/maelallano/penduAjax/blob/master/data.json');
+  ourRequest.open('GET', 'https://raw.githubusercontent.com/adambom/dictionary/master/dictionary.json');
   ourRequest.onload = function() {
     if (ourRequest.status >= 200 && ourRequest.status < 400) {
       var ourData = JSON.parse(ourRequest.responseText);
@@ -39,8 +39,9 @@ startBtn.addEventListener("click", function() {
 const startGame = (data) => {
   mainMenu.classList.add('hidden');
   mainMenu.classList.remove('active');
+  var randomNumber = Math.floor(Math.random() * Object.keys(data).length)
 
-  wordToFind = data[0].name.toLowerCase();
+  wordToFind = Object.keys(data)[randomNumber].toLowerCase();
   var htmlString = '';
   var life = 10;
   lifeText.textContent = life + ' mistakes and you die.'

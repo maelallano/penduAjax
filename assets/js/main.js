@@ -66,7 +66,7 @@ const startGame = (data) => {
   window.addEventListener('keydown', function(e) {
     if (e.keyCode === 13 && life) {
       if (answersInput.value) {
-        checkIfTrue(answersInput.value);
+        checkIfTrue(answersInput.value.toLowerCase());
       } else {
         alert('Write a letter :o');
       }

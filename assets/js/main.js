@@ -78,12 +78,14 @@ const startGame = (data) => {
   const checkIfTrue = (letter) => {
     var check = 0;
     var checkVictory = 0;
+    var j = 0;
+    var checkIfUsed = 0;
 
     for (var i = 0; i < wordToFind.length; i++) {
       if (letter === wordToFind[i]) {
         wordToFindDivText[i].textContent = letter;
         wordToFindDivText[i].classList.add('rightLetter')
-        check = 1;
+        check = 1
       }
     }
 
@@ -98,7 +100,15 @@ const startGame = (data) => {
       gameWon()
     }
 
-    if (!check) {
+    // var lettersUsedTab = lettersUsed.textContent.split(' ')
+    while (j < lettersUsed.textContent.length) {
+      if (letter === lettersUsed.textContent[j]) {
+        checkIfUsed = 1;
+      }
+      j++;
+    }
+
+    if (!check && !checkIfUsed) {
       life--;
       lettersUsed.textContent += (letter + ' ')
       lifeText.textContent = life === 1 ? life + ' mistake and you die.' : life + ' mistakes and you die.'

@@ -108,6 +108,13 @@ const startGame = (data) => {
       j++;
     }
 
+    var regExpAlphaMin = new RegExp('[a-z]')
+    var regExpAlphaMaj = new RegExp('[A-Z]')
+
+    if (!letter.match(regExpAlphaMin) && !letter.match(regExpAlphaMaj)) {
+      checkIfUsed = 1;
+    }
+
     if (!check && !checkIfUsed) {
       life--;
       lettersUsed.textContent += (letter + ' ')
